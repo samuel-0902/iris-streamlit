@@ -1,0 +1,13 @@
+name: Keep-Streamlit-Awake
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'      # ping toutes les 12 h UTC
+  workflow_dispatch:            # permet de le déclencher à la main
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wake the app
+        run: curl -s --retry 3 https://iris-app-zif4dadoxvvkbryehrjqhd.streamlit.app/ > /dev/null
