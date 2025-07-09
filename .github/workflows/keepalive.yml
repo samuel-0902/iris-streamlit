@@ -1,9 +1,18 @@
 name: Keep-Streamlit-Awake
 
 on:
+  # 1) S’exécute à chaque commit (pratique pour lancer la 1ʳᵉ fois et tester)
+  push:
+    # on ignore les changements de README pour ne pas déclencher inutilement
+    paths-ignore:
+      - README.md
+
+  # 2) S’exécute automatiquement deux fois par jour : 00 h UTC et 12 h UTC
   schedule:
-    - cron: '0 */12 * * *'      # ping toutes les 12 h UTC
-  workflow_dispatch:            # permet de le déclencher à la main
+    - cron: '0 */12 * * *'
+
+  # 3) Permet un lancement manuel depuis l’onglet « Actions »
+  workflow_dispatch:
 
 jobs:
   ping:
